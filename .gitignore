@@ -30,3 +30,12 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Build output
+wio-emu
+
+# Internal docs
+docs/
+
+# macOS
+.DS_Store
