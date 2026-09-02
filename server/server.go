@@ -13,6 +13,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 	"github.com/kurakura967/wiodisplay/assets"
+	"github.com/kurakura967/wiodisplay/pins"
 )
 
 const (
@@ -144,39 +145,27 @@ func (d *DisplayService) GetButtonState(args *GetButtonStateArgs, reply *bool) e
 	Buttons.mu.RLock()
 	defer Buttons.mu.RUnlock()
 	switch args.Pin {
-	case PinWioKeyA:
+	case pins.WioKeyA:
 		*reply = Buttons.A
-	case PinWioKeyB:
+	case pins.WioKeyB:
 		*reply = Buttons.B
-	case PinWioKeyC:
+	case pins.WioKeyC:
 		*reply = Buttons.C
-	case PinWio5SUp:
+	case pins.Wio5SUp:
 		*reply = Buttons.Up
-	case PinWio5SDown:
+	case pins.Wio5SDown:
 		*reply = Buttons.Down
-	case PinWio5SLeft:
+	case pins.Wio5SLeft:
 		*reply = Buttons.Left
-	case PinWio5SRight:
+	case pins.Wio5SRight:
 		*reply = Buttons.Right
-	case PinWio5SPress:
+	case pins.Wio5SPress:
 		*reply = Buttons.Center
 	default:
 		*reply = false
 	}
 	return nil
 }
-
-// Pin 番号は machine パッケージと合わせる
-const (
-	PinWioKeyA   = 10
-	PinWioKeyB   = 11
-	PinWioKeyC   = 12
-	PinWio5SUp   = 13
-	PinWio5SDown = 14
-	PinWio5SLeft = 15
-	PinWio5SRight = 16
-	PinWio5SPress = 17
-)
 
 // StartTCPServer は別ゴルーチンで TCP RPC サーバーを起動する
 func StartTCPServer() {

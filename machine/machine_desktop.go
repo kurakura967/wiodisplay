@@ -2,7 +2,10 @@
 
 package machine
 
-import "github.com/kurakura967/wiodisplay/client"
+import (
+	"github.com/kurakura967/wiodisplay/client"
+	"github.com/kurakura967/wiodisplay/pins"
+)
 
 // SPI はスタブ。API 互換のため定義する。
 type SPI struct{}
@@ -62,12 +65,12 @@ const (
 
 // Wio Terminal ボタン・ジョイスティックピン定数
 const (
-	WIO_KEY_A    Pin = 10
-	WIO_KEY_B    Pin = 11
-	WIO_KEY_C    Pin = 12
-	WIO_5S_UP    Pin = 13
-	WIO_5S_DOWN  Pin = 14
-	WIO_5S_LEFT  Pin = 15
-	WIO_5S_RIGHT Pin = 16
-	WIO_5S_PRESS Pin = 17
+	WIO_KEY_A    Pin = pins.WioKeyA
+	WIO_KEY_B    Pin = pins.WioKeyB
+	WIO_KEY_C    Pin = pins.WioKeyC
+	WIO_5S_UP    Pin = pins.Wio5SUp
+	WIO_5S_DOWN  Pin = pins.Wio5SDown
+	WIO_5S_LEFT  Pin = pins.Wio5SLeft
+	WIO_5S_RIGHT Pin = pins.Wio5SRight
+	WIO_5S_PRESS Pin = pins.Wio5SPress
 )

@@ -63,6 +63,23 @@ func (d *Device) FillScreen(c color.RGBA) {
 	}, &reply)
 }
 
+// DrawRGBBitmap8 draws a RGB565 big-endian image at (x, y).
+func (d *Device) DrawRGBBitmap8(x, y int16, data []uint8, w, h int16) error {
+	for dy := int16(0); dy < h; dy++ {
+		for dx := int16(0); dx < w; dx++ {
+			i := (dy*w + dx) * 2
+			hi := uint16(data[i])
+			lo := uint16(data[i+1])
+			v := (hi << 8) | lo
+			r := uint8((v>>11)&0x1F) << 3
+			g := uint8((v>>5)&0x3F) << 2
+			b := uint8(v&0x1F) << 3
+			d.DrawPixel(x+dx, y+dy, color.RGBA{R: r, G: g, B: b, A: 0xFF})
+		}
+	}
+	return nil
+}
+
 // Display satisfies the drivers.Displayer interface (no-op for emulator).
 func (d *Device) Display() error { return nil }
 
